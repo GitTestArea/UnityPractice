@@ -6,14 +6,12 @@ public class CarController : MonoBehaviour
 {
     float speed = 0;
 
-    // Start is called before the first frame update
     // Startは起動時に一回だけ実行されるもの
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         //マウスがクリックされたら
