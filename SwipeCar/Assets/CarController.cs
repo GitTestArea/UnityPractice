@@ -5,6 +5,7 @@ using UnityEngine;
 public class CarController : MonoBehaviour
 {
     float speed = 0;
+    Vector2 startPos;
 
     // Startは起動時に一回だけ実行されるもの
     void Start()
@@ -14,10 +15,20 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        //マウスがクリックされたら
+        //スワイプの長さを求める
         if (Input.GetMouseButtonDown(0))
         {
-            this.speed = 0.2f; //初速度を設定
+            //マウスをクリックした座標
+            this.startPos = Input.mousePosition;
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            //マウスを離した座標
+            Vector2 endPos = Input.mousePosition;
+            float swipeLength = endPos.x - this.startPos.x;
+
+            //スワイプの長さを初速度に変換する
+            this.speed = swipeLength / 500.0f;
         }
 
         transform.Translate(this.speed, 0, 0); //移動 Translate(0,3,0)と書くことでY方向に3マス進む
