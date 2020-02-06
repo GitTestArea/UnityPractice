@@ -20,8 +20,17 @@ public class GameDirector : MonoBehaviour
     {
         float length = this.flag.transform.position.x -
             this.car.transform.position.x;
-        this.distance.GetComponent<Text>().text =
+
+        //距離が0未満ならゲームオーバー判定にする
+        if(length >= 0)
+        {
+            this.distance.GetComponent<Text>().text =
             "ゴールまで" + length.ToString("F2") + "m";
-        
+        }
+        else
+        {
+            this.distance.GetComponent<Text>().text = "ゲームオーバー";
+        }
+
     }
 }

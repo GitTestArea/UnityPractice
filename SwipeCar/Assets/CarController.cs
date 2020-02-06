@@ -29,6 +29,9 @@ public class CarController : MonoBehaviour
 
             //スワイプの長さを初速度に変換する
             this.speed = swipeLength / 500.0f;
+
+            //効果音再生
+            GetComponent<AudioSource>().Play();
         }
 
         transform.Translate(this.speed, 0, 0); //移動 Translate(0,3,0)と書くことでY方向に3マス進む
