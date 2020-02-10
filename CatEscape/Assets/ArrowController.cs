@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ArrowController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    GameObject player;
+
     void Start()
     {
-        
+        this.player = GameObject.Find("player");     
     }
 
     // Update is called once per frame
@@ -19,6 +20,20 @@ public class ArrowController : MonoBehaviour
         //画面外に出たらオブジェクトを破棄する
         if(transform.position.y < -5.0f)    //yが-5よりも小さくなったらオブジェクトを破棄する
         {
+            Destroy(gameObject);
+        }
+
+        //当たり判定 p207ページ参照
+        Vector2 p1 = transform.position;    //矢の中心座標をp1に代入している
+        Vector2 p2 = this.player.transform.position;    //プレイヤーの中心座標をp2に代入している
+        Vector2 dir = p1 - p2;
+        float d = dir.magnitude;
+        float r1 = 0.5f;    //矢の半径
+        float r2 = 1.0f;    //プレイヤーの半径
+
+        if (d < r1 + r2)
+        {
+            //衝突した場合は矢を消す
             Destroy(gameObject);
         }
     }
