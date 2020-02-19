@@ -33,6 +33,12 @@ public class ArrowController : MonoBehaviour
 
         if (d < r1 + r2)
         {
+            //監督スクリプトにプレイヤーと衝突したことを伝える
+            //ArrowContorollerからGameDirectorオブジェクトがもつDecreaseHpメソッドを呼び出すためFindメソッドを使用して、GameDirectorオブジェクトを探している
+            GameObject director = GameObject.Find("GameDirector");
+            //GetComponentメソッドを使用してGameDirectorオブジェクトの持つGameDirectorスクリプトを取得し、DecreaseHpメソッドを呼び出しています。
+            director.GetComponent<GameDirector>().DecreaseHp();
+
             //衝突した場合は矢を消す
             Destroy(gameObject);
         }
